@@ -36,24 +36,34 @@ var template2 = <div id="product-details">
 
 </div>;
 
+var number = 0;
+
 function addOne() {
+    number++;
+    renderApp();
     console.log("add one");
 }
 
 function minusOne() {
+    number--;
+    renderApp();
     console.log("minus one");
 }
 
-var number = 0;
-var template3 = (
-    <div>
-        <h1>Number : {number}</h1>
-        <button id="btnPlusOne" onClick={addOne}>+1</button>
-        <button id="btnMinusOne" onClick={minusOne}>-1</button>
-    </div>
-);
+function renderApp() {
+    var template3 = (
+        <div>
+            <h1>Number : {number}</h1>
+            <button id="btnPlusOne" onClick={addOne}>+1</button>
+            <button id="btnMinusOne" onClick={minusOne}>-1</button>
+        </div>
+    );
+
+    ReactDOM.render(template3, root);
+}
+
+renderApp();
 
 
 //ReactDOM.render(template, root);
 //ReactDOM.render(template2, root);
-ReactDOM.render(template3, root);
