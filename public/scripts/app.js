@@ -52,5 +52,11 @@ function renderApp() {
   ReactDOM.render(template3, root);
 }
 
-renderApp(); //ReactDOM.render(template, root);
+function tick() {
+  var element = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", null, "time is : ", new Date().toLocaleTimeString()));
+  ReactDOM.render(element, root);
+}
+
+setInterval(tick, 1000); //renderApp();
+//ReactDOM.render(template, root);
 //ReactDOM.render(template2, root);
