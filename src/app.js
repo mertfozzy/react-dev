@@ -21,12 +21,20 @@ var product = {
     description : "a nice budget phone"
 };
 
+function getDescription(description) {
+    if (description) {
+        return description;
+    }
+    else{
+        return "no description";
+    }
+}
 
 var template2 = <div id="product-details">
 
 <h2 id="product-name">name : {product.name}</h2>
 <p id="product-price">price : {product.price}₺</p>
-<p id="product-description">description : {product.description}</p>
+<p id="product-description">description : {getDescription(product.description)}</p>
 
 </div>;
 

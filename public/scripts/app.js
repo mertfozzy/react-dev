@@ -9,6 +9,15 @@ var product = {
   price: 3000,
   description: "a nice budget phone"
 };
+
+function getDescription(description) {
+  if (description) {
+    return description;
+  } else {
+    return "no description";
+  }
+}
+
 var template2 = /*#__PURE__*/React.createElement("div", {
   id: "product-details"
 }, /*#__PURE__*/React.createElement("h2", {
@@ -17,6 +26,6 @@ var template2 = /*#__PURE__*/React.createElement("div", {
   id: "product-price"
 }, "price : ", product.price, "\u20BA"), /*#__PURE__*/React.createElement("p", {
   id: "product-description"
-}, "description : ", product.description));
+}, "description : ", getDescription(product.description)));
 ReactDOM.render(template, root);
 ReactDOM.render(template2, root);
