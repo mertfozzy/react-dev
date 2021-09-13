@@ -27,5 +27,23 @@ var template2 = /*#__PURE__*/React.createElement("div", {
 }, "price : ", product.price, "\u20BA"), /*#__PURE__*/React.createElement("p", {
   id: "product-description"
 }, "description : ", getDescription(product.description)));
-ReactDOM.render(template, root);
-ReactDOM.render(template2, root);
+
+function addOne() {
+  console.log("add one");
+}
+
+function minusOne() {
+  console.log("minus one");
+}
+
+var number = 0;
+var template3 = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Number : ", number), /*#__PURE__*/React.createElement("button", {
+  id: "btnPlusOne",
+  onClick: addOne
+}, "+1"), /*#__PURE__*/React.createElement("button", {
+  id: "btnMinusOne",
+  onClick: minusOne
+}, "-1")); //ReactDOM.render(template, root);
+//ReactDOM.render(template2, root);
+
+ReactDOM.render(template3, root);

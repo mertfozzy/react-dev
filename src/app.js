@@ -13,8 +13,6 @@ var template =
 
 </div>;
 
-
-
 var product = {
     name :  "iPhone 8",
     price : 3000,
@@ -38,6 +36,24 @@ var template2 = <div id="product-details">
 
 </div>;
 
+function addOne() {
+    console.log("add one");
+}
 
-ReactDOM.render(template, root);
-ReactDOM.render(template2, root);
+function minusOne() {
+    console.log("minus one");
+}
+
+var number = 0;
+var template3 = (
+    <div>
+        <h1>Number : {number}</h1>
+        <button id="btnPlusOne" onClick={addOne}>+1</button>
+        <button id="btnMinusOne" onClick={minusOne}>-1</button>
+    </div>
+);
+
+
+//ReactDOM.render(template, root);
+//ReactDOM.render(template2, root);
+ReactDOM.render(template3, root);
