@@ -19,7 +19,7 @@ var product = {
     name :  "iPhone 8",
     price : 3000,
     description : "a nice budget phone"
-};
+};  
 
 function getDescription(description) {
     if (description) {
