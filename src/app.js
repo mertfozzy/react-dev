@@ -34,9 +34,11 @@ function render() {
     <div>{app.description}</div>
 
     <ul>
-        <li>Lorem, ipsum.</li>
-        <li>Lorem, ipsum.</li>
-        <li>Lorem, ipsum.</li>
+        {
+            app.items.map((item)=>{
+                return <li key={item.toString()}>{item}</li>
+            })
+        }
     </ul>
 
     <p>
