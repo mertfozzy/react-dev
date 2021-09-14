@@ -6,7 +6,6 @@ var app = {
     items : ["item1", "item2", "item3"]
 };
 
-
 const onFormSubmit = (event) => {
     event.preventDefault();
 
