@@ -7,7 +7,7 @@ var app = {
 };
 
 
-function onFormSubmit(event) {
+const onFormSubmit = (event) => {
     event.preventDefault();
 
     var item = event.target.elements.txtItem.value;
@@ -21,13 +21,12 @@ function onFormSubmit(event) {
     console.log("form submitted");
 }
 
-function clearItems() {
+const clearItems = () => {
     app.items = [];
     render();
 }
 
-
-function render() {
+const render = () => {
     var template = 
     <div>
     <h1>{app.title}</h1>
