@@ -2,6 +2,12 @@
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
@@ -16,90 +22,132 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+/*
+const Header = function () {
+    return <h1>Hello React</h1>
+}
+*/
+var TodoApp = /*#__PURE__*/function (_React$Component) {
+  _inherits(TodoApp, _React$Component);
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+  var _super = _createSuper(TodoApp);
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  function TodoApp() {
+    _classCallCheck(this, TodoApp);
 
-// ES5 Class : var Person = function () { }
-//ES6 Class :
-var Person = /*#__PURE__*/function () {
-  function Person(name, age) {
-    _classCallCheck(this, Person);
-
-    this.name = name;
-    this.age = age;
+    return _super.apply(this, arguments);
   }
 
-  _createClass(Person, [{
-    key: "calculateAge",
-    value: function calculateAge() {
-      return new Date().getFullYear() - this.age;
-    }
-  }, {
-    key: "greeting",
-    value: function greeting(text) {
-      this.text = text;
-      return "".concat(text, ", my name is ").concat(this.name, ". ");
+  _createClass(TodoApp, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(TodoList, null), /*#__PURE__*/React.createElement(Action, null));
     }
   }]);
 
-  return Person;
-}(); //burada Student classı Persondan özellik aldı
+  return TodoApp;
+}(React.Component);
 
+var Header = /*#__PURE__*/function (_React$Component2) {
+  _inherits(Header, _React$Component2);
 
-var Student = /*#__PURE__*/function (_Person) {
-  _inherits(Student, _Person);
+  var _super2 = _createSuper(Header);
 
-  var _super = _createSuper(Student);
+  function Header() {
+    _classCallCheck(this, Header);
 
-  function Student(name, age, studentID) {
-    var _this;
-
-    _classCallCheck(this, Student);
-
-    _this = _super.call(this, name, age); //name ve age Persondan geldiği için tekrar this kullanmak gerekmiyor
-
-    _this.studentID = studentID; //studentID yeni bir parametre olduğu için belirtiliyor
-
-    return _this;
+    return _super2.apply(this, arguments);
   }
 
-  return Student;
-}(Person);
-
-var Teacher = /*#__PURE__*/function (_Person2) {
-  _inherits(Teacher, _Person2);
-
-  var _super2 = _createSuper(Teacher);
-
-  function Teacher(name, age, department) {
-    var _this2;
-
-    _classCallCheck(this, Teacher);
-
-    _this2 = _super2.call(this, name, age, department);
-    _this2.department = department;
-    return _this2;
-  }
-
-  _createClass(Teacher, [{
-    key: "loginTeacher",
-    value: function loginTeacher() {
-      return "Welcome ".concat(this.name, ", your department is : ").concat(this.department, ".");
+  _createClass(Header, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Todo Application"), /*#__PURE__*/React.createElement("div", null, "Lorem, ipsum dolor."));
     }
   }]);
 
-  return Teacher;
-}(Person); //Objects :
+  return Header;
+}(React.Component);
+
+var TodoList = /*#__PURE__*/function (_React$Component3) {
+  _inherits(TodoList, _React$Component3);
+
+  var _super3 = _createSuper(TodoList);
+
+  function TodoList() {
+    _classCallCheck(this, TodoList);
+
+    return _super3.apply(this, arguments);
+  }
+
+  _createClass(TodoList, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement(TodoItem, null));
+    }
+  }]);
+
+  return TodoList;
+}(React.Component);
+
+var TodoItem = /*#__PURE__*/function (_React$Component4) {
+  _inherits(TodoItem, _React$Component4);
+
+  var _super4 = _createSuper(TodoItem);
+
+  function TodoItem() {
+    _classCallCheck(this, TodoItem);
+
+    return _super4.apply(this, arguments);
+  }
+
+  _createClass(TodoItem, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("li", null, "Todo item"), /*#__PURE__*/React.createElement("li", null, "Todo item2"), /*#__PURE__*/React.createElement("li", null, "Todo item3"));
+    }
+  }]);
+
+  return TodoItem;
+}(React.Component);
+
+var Action = /*#__PURE__*/function (_React$Component5) {
+  _inherits(Action, _React$Component5);
+
+  var _super5 = _createSuper(Action);
+
+  function Action() {
+    _classCallCheck(this, Action);
+
+    return _super5.apply(this, arguments);
+  }
+
+  _createClass(Action, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", null, "Clear Items")), /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("input", {
+        type: "text",
+        name: "txtItem"
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "submit"
+      }, "Add Item")));
+    }
+  }]);
+
+  return Action;
+}(React.Component);
+/* Bunun yerine yukarıda TodoApp componenti aldık :
+const template = (
+    <div>
+        <Header />
+        <Todo />
+        <Action/>
+    </div>
+);
 
 
-var p = new Student("Mert", 21, 1804010005);
-var p2 = new Person("Mercan", 20);
-var p3 = new Teacher("Serra", 21, "Computer Science");
-console.log(p.calculateAge());
-console.log(p2.calculateAge());
-console.log(p.greeting("Hello"));
-console.log(p2.greeting("Merhaba"));
-console.log(p3.loginTeacher());
+ReactDOM.render(template, document.getElementById("root"));
+*/
+
+
+ReactDOM.render( /*#__PURE__*/React.createElement(TodoApp, null), document.getElementById("root"));
