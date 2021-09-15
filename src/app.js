@@ -6,22 +6,31 @@ const Header = function () {
 
 class TodoApp extends React.Component{
     render(){
+
+        const app = {
+            title : "To-Do App",
+            description : "Lorem ipsum dolor sit amet.",
+            items : ["item1", "item2", "item3"]
+        };
+
         return(
         <div>
-            <Header />
-            <TodoList />
+            <Header title={app.title} description={app.description} />
+            <TodoList items={app.items}/>
             <Action/>
         </div>
         );
     }
 }
 
+
 class Header extends React.Component{
     render(){
+        console.log(this.props); //props özel bir parametre, React.Componentten geliyor
         return (
             <div>
-                <h1>Todo Application</h1>
-                <div>Lorem, ipsum dolor.</div>
+                <h1>{this.props.title}</h1>
+                <div>{this.props.description}</div>
             </div>
         );
     }
@@ -31,7 +40,11 @@ class TodoList extends React.Component{
     render(){
         return(
             <ul>
-                <TodoItem />
+                {   //yukarıdaki item yapısını getirir
+                    this.props.items.map((item, index)=>
+                        <TodoItem key={index} item={item} />
+                    )
+                }
             </ul>
         );
     }
@@ -39,12 +52,8 @@ class TodoList extends React.Component{
 
 class TodoItem extends React.Component{
     render(){
-        return(
-            <div>
-                <li>Todo item</li>
-                <li>Todo item2</li>
-                <li>Todo item3</li>
-            </div>
+        return( //itemları (index) yapının içine koyar
+            <li>{this.props.item}</li>
         );
     }
 }

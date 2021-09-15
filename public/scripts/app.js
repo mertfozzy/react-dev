@@ -41,7 +41,17 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
   _createClass(TodoApp, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(TodoList, null), /*#__PURE__*/React.createElement(Action, null));
+      var app = {
+        title: "To-Do App",
+        description: "Lorem ipsum dolor sit amet.",
+        items: ["item1", "item2", "item3"]
+      };
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
+        title: app.title,
+        description: app.description
+      }), /*#__PURE__*/React.createElement(TodoList, {
+        items: app.items
+      }), /*#__PURE__*/React.createElement(Action, null));
     }
   }]);
 
@@ -62,7 +72,9 @@ var Header = /*#__PURE__*/function (_React$Component2) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Todo Application"), /*#__PURE__*/React.createElement("div", null, "Lorem, ipsum dolor."));
+      console.log(this.props); //props özel bir parametre, React.Componentten geliyor
+
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, this.props.title), /*#__PURE__*/React.createElement("div", null, this.props.description));
     }
   }]);
 
@@ -83,7 +95,13 @@ var TodoList = /*#__PURE__*/function (_React$Component3) {
   _createClass(TodoList, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement(TodoItem, null));
+      return /*#__PURE__*/React.createElement("ul", null, //yukarıdaki item yapısını getirir
+      this.props.items.map(function (item, index) {
+        return /*#__PURE__*/React.createElement(TodoItem, {
+          key: index,
+          item: item
+        });
+      }));
     }
   }]);
 
@@ -104,7 +122,11 @@ var TodoItem = /*#__PURE__*/function (_React$Component4) {
   _createClass(TodoItem, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("li", null, "Todo item"), /*#__PURE__*/React.createElement("li", null, "Todo item2"), /*#__PURE__*/React.createElement("li", null, "Todo item3"));
+      return (
+        /*#__PURE__*/
+        //itemları (index) yapının içine koyar
+        React.createElement("li", null, this.props.item)
+      );
     }
   }]);
 
