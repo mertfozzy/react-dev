@@ -1,46 +1,33 @@
 "use strict";
 
-var root = document.getElementById("root");
-var app = {
-  title: "To-Do App",
-  description: "Lorem ipsum dolor sit amet.",
-  items: ["item1", "item2", "item3"]
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var onFormSubmit = function onFormSubmit(event) {
-  event.preventDefault();
-  var item = event.target.elements.txtItem.value;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  if (item) {
-    app.items.push(item);
-    event.target.elements.txtItem.value = "";
-    render();
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// ES5 Class : var person = function () { }
+//ES6 Class :
+var person = /*#__PURE__*/function () {
+  function person(name, age) {
+    _classCallCheck(this, person);
+
+    this.name = name;
+    this.age = age;
   }
 
-  console.log("form submitted");
-};
+  _createClass(person, [{
+    key: "calculateAge",
+    value: function calculateAge() {
+      return new Date().getFullYear() - this.age;
+    }
+  }]);
 
-var clearItems = function clearItems() {
-  app.items = [];
-  render();
-};
+  return person;
+}(); //Objects :
 
-var render = function render() {
-  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, app.title), /*#__PURE__*/React.createElement("div", null, app.description), /*#__PURE__*/React.createElement("ul", null, app.items.map(function (item) {
-    return /*#__PURE__*/React.createElement("li", {
-      key: item.toString()
-    }, item);
-  })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
-    onClick: clearItems
-  }, "Clear Items")), /*#__PURE__*/React.createElement("p", null, "There are ", app.items.length, " item."), /*#__PURE__*/React.createElement("form", {
-    onSubmit: onFormSubmit
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "txtItem"
-  }), /*#__PURE__*/React.createElement("button", {
-    type: "submit"
-  }, "Add Item")));
-  ReactDOM.render(template, root);
-};
 
-render();
+var p = new person("Mert", 21);
+var p2 = new person("Mercan", 20);
+console.log(p.calculateAge());
+console.log(p2.calculateAge());
