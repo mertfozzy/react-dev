@@ -21,6 +21,12 @@ var person = /*#__PURE__*/function () {
     value: function calculateAge() {
       return new Date().getFullYear() - this.age;
     }
+  }, {
+    key: "greeting",
+    value: function greeting(text) {
+      this.text = text;
+      return " ".concat(text, ", my name is ").concat(this.name, ". ");
+    }
   }]);
 
   return person;
@@ -31,3 +37,4 @@ var p = new person("Mert", 21);
 var p2 = new person("Mercan", 20);
 console.log(p.calculateAge());
 console.log(p2.calculateAge());
+console.log(p.greeting("Hello"));
