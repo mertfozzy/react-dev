@@ -38,3 +38,4 @@ var p2 = new person("Mercan", 20);
 console.log(p.calculateAge());
 console.log(p2.calculateAge());
 console.log(p.greeting("Hello"));
+console.log(p2.greeting("Merhaba"));
