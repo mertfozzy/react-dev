@@ -37,15 +37,28 @@ class Header extends React.Component{
 }
 
 class TodoList extends React.Component{
+    constructor(props){
+        super(props);
+        this.clearItems = this.clearItems.bind(this); //bind işlemi yaptık, kaybedilen thisi aldık
+    }
+    clearItems(){
+        console.log("cleared");
+
+    }
     render(){
         return(
-            <ul>
-                {   //yukarıdaki item yapısını getirir
-                    this.props.items.map((item, index)=>
-                        <TodoItem key={index} item={item} />
-                    )
-                }
-            </ul>
+            <div>
+                <ul>
+                    {   //yukarıdaki item yapısını getirir
+                        this.props.items.map((item, index)=>
+                            <TodoItem key={index} item={item} />
+                        )
+                    }
+                </ul>
+                <p>
+                   <button onClick={this.clearItems}>Clear Items</button>
+                </p>
+            </div>
         );
     }
 }
@@ -59,13 +72,21 @@ class TodoItem extends React.Component{
 }
 
 class Action extends React.Component{
+
+    //eleman ekleme
+    onFormSubmit(e) {
+        e.preventDefault();
+
+        const item = e.target.elements.txtItem.value.trim();
+        if (item) {
+            console.log(item);
+        }
+    }
+
     render(){
         return(
             <div>
-                <p>
-                    <button>Clear Items</button>
-                </p>
-                <form>
+                <form onSubmit={this.onFormSubmit}>
                     <input type="text" name="txtItem"/>
                     <button type="submit">Add Item</button>
                 </form>
