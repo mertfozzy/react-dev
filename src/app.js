@@ -9,6 +9,7 @@ class TodoApp extends React.Component{
     constructor(props){
         super(props);
         this.clearItems = this.clearItems.bind(this); //bind işlemi yaptık, kaybedilen thisi aldık
+        this.addItems = this.addItems.bind(this);
         this.state = {
             title : "To-Do App",
             description : "Lorem ipsum dolor sit amet.",
@@ -27,12 +28,25 @@ class TodoApp extends React.Component{
         });
     }
 
+    addItems(item){
+
+        if (!item) {
+            return `Boş bırakılamaz !`;
+        }
+        else if (this.state.items.indexOf(item) > -1) {
+            return `Aynı elemanı ekleyemezsiniz.`;
+        }
+        this.setState((prevState)=>{
+            return {items : prevState.items.concat(item)} 
+        });
+    }
+
     render(){
         return(
         <div>
             <Header title={this.state.title} description={this.state.description} />
             <TodoList items={this.state.items} clearItems={this.clearItems}/>
-            <Action/>
+            <Action addItems={this.addItems}/>
         </div>
         );
     }
@@ -80,19 +94,28 @@ class TodoItem extends React.Component{
 
 class Action extends React.Component{
 
+    constructor(props){
+        super(props);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.state = {
+            error : ""
+        }
+    }
+
     //eleman ekleme
     onFormSubmit(e) {
         e.preventDefault();
-
         const item = e.target.elements.txtItem.value.trim();
-        if (item) {
-            console.log(item);
-        }
+        const error = this.props.addItems(item);
+        this.setState({
+            error : error
+        });
     }
 
     render(){
         return(
             <div>
+                {this.state.error && <p>{this.state.error}</p> }
                 <form onSubmit={this.onFormSubmit}>
                     <input type="text" name="txtItem"/>
                     <button type="submit">Add Item</button>
