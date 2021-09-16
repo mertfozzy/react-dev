@@ -22,179 +22,127 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-/*
-const Header = function () {
-    return <h1>Hello React</h1>
-}
-*/
-var TodoApp = /*#__PURE__*/function (_React$Component) {
-  _inherits(TodoApp, _React$Component);
+var Counter = /*#__PURE__*/function (_React$Component) {
+  _inherits(Counter, _React$Component);
 
-  var _super = _createSuper(TodoApp);
+  var _super = _createSuper(Counter);
 
-  function TodoApp() {
-    _classCallCheck(this, TodoApp);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(TodoApp, [{
-    key: "render",
-    value: function render() {
-      var app = {
-        title: "To-Do App",
-        description: "Lorem ipsum dolor sit amet.",
-        items: ["item1", "item2", "item3"]
-      };
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
-        title: app.title,
-        description: app.description
-      }), /*#__PURE__*/React.createElement(TodoList, {
-        items: app.items
-      }), /*#__PURE__*/React.createElement(Action, null));
-    }
-  }]);
-
-  return TodoApp;
-}(React.Component);
-
-var Header = /*#__PURE__*/function (_React$Component2) {
-  _inherits(Header, _React$Component2);
-
-  var _super2 = _createSuper(Header);
-
-  function Header() {
-    _classCallCheck(this, Header);
-
-    return _super2.apply(this, arguments);
-  }
-
-  _createClass(Header, [{
-    key: "render",
-    value: function render() {
-      console.log(this.props); //props özel bir parametre, React.Componentten geliyor
-
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, this.props.title), /*#__PURE__*/React.createElement("div", null, this.props.description));
-    }
-  }]);
-
-  return Header;
-}(React.Component);
-
-var TodoList = /*#__PURE__*/function (_React$Component3) {
-  _inherits(TodoList, _React$Component3);
-
-  var _super3 = _createSuper(TodoList);
-
-  function TodoList(props) {
+  function Counter(props) {
     var _this;
 
-    _classCallCheck(this, TodoList);
+    _classCallCheck(this, Counter);
 
-    _this = _super3.call(this, props);
-    _this.clearItems = _this.clearItems.bind(_assertThisInitialized(_this)); //bind işlemi yaptık, kaybedilen thisi aldık
-
+    _this = _super.call(this, props);
+    _this.addOne = _this.addOne.bind(_assertThisInitialized(_this));
+    _this.minusOne = _this.minusOne.bind(_assertThisInitialized(_this));
+    _this.reset = _this.reset.bind(_assertThisInitialized(_this));
+    _this.state = {
+      number: 0
+    };
     return _this;
   }
 
-  _createClass(TodoList, [{
-    key: "clearItems",
-    value: function clearItems() {
-      console.log("cleared");
+  _createClass(Counter, [{
+    key: "addOne",
+    value: function addOne() {
+      this.setState({
+        number: this.state.number + 1
+      });
+      console.log("+1");
+    }
+  }, {
+    key: "minusOne",
+    value: function minusOne() {
+      this.setState({
+        number: this.state.number - 1
+      });
+      console.log("-1");
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      this.setState({
+        number: 0
+      });
+      console.log("resetted");
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, //yukarıdaki item yapısını getirir
-      this.props.items.map(function (item, index) {
-        return /*#__PURE__*/React.createElement(TodoItem, {
-          key: index,
-          item: item
-        });
-      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
-        onClick: this.clearItems
-      }, "Clear Items")));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Number : ", this.state.number, " "), /*#__PURE__*/React.createElement("button", {
+        onClick: this.addOne
+      }, "+1"), /*#__PURE__*/React.createElement("button", {
+        onClick: this.minusOne
+      }, "-1"), /*#__PURE__*/React.createElement("button", {
+        onClick: this.reset
+      }, "Reset"));
     }
   }]);
 
-  return TodoList;
+  return Counter;
 }(React.Component);
 
-var TodoItem = /*#__PURE__*/function (_React$Component4) {
-  _inherits(TodoItem, _React$Component4);
-
-  var _super4 = _createSuper(TodoItem);
-
-  function TodoItem() {
-    _classCallCheck(this, TodoItem);
-
-    return _super4.apply(this, arguments);
-  }
-
-  _createClass(TodoItem, [{
-    key: "render",
-    value: function render() {
-      return (
-        /*#__PURE__*/
-        //itemları (index) yapının içine koyar
-        React.createElement("li", null, this.props.item)
-      );
-    }
-  }]);
-
-  return TodoItem;
-}(React.Component);
-
-var Action = /*#__PURE__*/function (_React$Component5) {
-  _inherits(Action, _React$Component5);
-
-  var _super5 = _createSuper(Action);
-
-  function Action() {
-    _classCallCheck(this, Action);
-
-    return _super5.apply(this, arguments);
-  }
-
-  _createClass(Action, [{
-    key: "onFormSubmit",
-    value: //eleman ekleme
-    function onFormSubmit(e) {
-      e.preventDefault();
-      var item = e.target.elements.txtItem.value.trim();
-
-      if (item) {
-        console.log(item);
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("form", {
-        onSubmit: this.onFormSubmit
-      }, /*#__PURE__*/React.createElement("input", {
-        type: "text",
-        name: "txtItem"
-      }), /*#__PURE__*/React.createElement("button", {
-        type: "submit"
-      }, "Add Item")));
-    }
-  }]);
-
-  return Action;
-}(React.Component);
-/* Bunun yerine yukarıda TodoApp componenti aldık :
-const template = (
-    <div>
-        <Header />
-        <Todo />
-        <Action/>
-    </div>
-);
-
-
-ReactDOM.render(template, document.getElementById("root"));
-*/
-
-
-ReactDOM.render( /*#__PURE__*/React.createElement(TodoApp, null), document.getElementById("root"));
+ReactDOM.render( /*#__PURE__*/React.createElement(Counter, null), document.getElementById("root")); // var root = document.getElementById("root");
+// var template = 
+// <div>
+// <h1 id="header">Hello World Nigga!</h1>
+// <div>Lorem, ipsum dolor.</div>
+// <ul>
+//     <li>Lorem, ipsum.</li>
+//     <li>Lorem, ipsum.</li>
+//     <li>Lorem, ipsum.</li>
+// </ul>
+// </div>;
+// var product = {
+//     name :  "iPhone 8",
+//     price : 3000,
+//     description : "a nice budget phone"
+// };  
+// function getDescription(description) {
+//     if (description) {
+//         return description;
+//     }
+//     else{
+//         return "no description";
+//     }
+// }
+// var template2 = <div id="product-details">
+// <h2 id="product-name">name : {product.name}</h2>
+// <p id="product-price">price : {product.price}₺</p>
+// <p id="product-description">description : {getDescription(product.description)}</p>
+// </div>;
+// var number = 0;
+// function addOne() {
+//     number++;
+//     renderApp();
+//     console.log("add one");
+// }
+// function minusOne() {
+//     number--;
+//     renderApp();
+//     console.log("minus one");
+// }
+// function renderApp() {
+//     var template3 = (
+//         <div>
+//             <h1>Number : {number}</h1>
+//             <button id="btnPlusOne" onClick={addOne}>+1</button>
+//             <button id="btnMinusOne" onClick={minusOne}>-1</button>
+//         </div>
+//     );
+//     ReactDOM.render(template3, root);
+// }
+// function tick() {
+//     var element = (
+//         <div>
+//             <h2>
+//                 time is : {new Date().toLocaleTimeString()}
+//             </h2>
+//         </div>
+//     );
+//     ReactDOM.render(element, root);
+// }
+// setInterval(tick, 1000);
+// //renderApp();
+// //ReactDOM.render(template, root);
+// //ReactDOM.render(template2, root);
