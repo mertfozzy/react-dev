@@ -5,18 +5,33 @@ const Header = function () {
 */
 
 class TodoApp extends React.Component{
-    render(){
 
-        const app = {
+    constructor(props){
+        super(props);
+        this.clearItems = this.clearItems.bind(this); //bind işlemi yaptık, kaybedilen thisi aldık
+        this.state = {
             title : "To-Do App",
             description : "Lorem ipsum dolor sit amet.",
-            items : ["item1", "item2", "item3"]
-        };
+            items :[
+                "item1",
+                "item2",
+                "item3",
+                "item4"
+            ]
+        }
+    }
 
+    clearItems(){
+        this.setState({
+            items : []
+        });
+    }
+
+    render(){
         return(
         <div>
-            <Header title={app.title} description={app.description} />
-            <TodoList items={app.items}/>
+            <Header title={this.state.title} description={this.state.description} />
+            <TodoList items={this.state.items} clearItems={this.clearItems}/>
             <Action/>
         </div>
         );
@@ -37,14 +52,6 @@ class Header extends React.Component{
 }
 
 class TodoList extends React.Component{
-    constructor(props){
-        super(props);
-        this.clearItems = this.clearItems.bind(this); //bind işlemi yaptık, kaybedilen thisi aldık
-    }
-    clearItems(){
-        console.log("cleared");
-
-    }
     render(){
         return(
             <div>
@@ -56,7 +63,7 @@ class TodoList extends React.Component{
                     }
                 </ul>
                 <p>
-                   <button onClick={this.clearItems}>Clear Items</button>
+                   <button onClick={this.props.clearItems}>Clear Items</button>
                 </p>
             </div>
         );
