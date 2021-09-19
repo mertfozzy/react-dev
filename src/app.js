@@ -10,6 +10,7 @@ class TodoApp extends React.Component{
         super(props);
         this.clearItems = this.clearItems.bind(this); //bind işlemi yaptık, kaybedilen thisi aldık
         this.addItems = this.addItems.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
         this.state = {
             title : "To-Do App",
             description : "Lorem ipsum dolor sit amet.",
@@ -20,6 +21,18 @@ class TodoApp extends React.Component{
                 "item4"
             ]
         }
+    }
+
+    deleteItem(item){
+        console.log(item);
+        this.setState((prevState) => {
+            const arr = prevState.items.filter((i) => {
+                return item != i;
+            })
+            return {
+                items : arr
+            }
+        });
     }
 
     clearItems(){
@@ -45,7 +58,7 @@ class TodoApp extends React.Component{
         return(
         <div>
             <Header title={this.state.title} description={this.state.description} />
-            <TodoList items={this.state.items} clearItems={this.clearItems}/>
+            <TodoList items={this.state.items} deleteItem={this.deleteItem} clearItems={this.clearItems}/>
             <Action addItems={this.addItems}/>
         </div>
         );
@@ -72,7 +85,7 @@ class TodoList extends React.Component{
                 <ul>
                     {   //yukarıdaki item yapısını getirir
                         this.props.items.map((item, index)=>
-                            <TodoItem key={index} item={item} />
+                            <TodoItem deleteItem={this.props.deleteItem} key={index} item={item} />
                         )
                     }
                 </ul>
@@ -85,9 +98,19 @@ class TodoList extends React.Component{
 }
 
 class TodoItem extends React.Component{
+    constructor(props){
+        super(props);
+        this.deleteItem = this.deleteItem.bind(this);
+    }
+    deleteItem(){
+        this.props.deleteItem(this.props.item);
+    }
     render(){
         return( //itemları (index) yapının içine koyar
-            <li>{this.props.item}</li>
+            <li>
+                {this.props.item}
+                <button onClick={this.deleteItem}>x</button>
+            </li>
         );
     }
 }

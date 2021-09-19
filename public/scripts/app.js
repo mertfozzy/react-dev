@@ -41,6 +41,7 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
     _this.clearItems = _this.clearItems.bind(_assertThisInitialized(_this)); //bind işlemi yaptık, kaybedilen thisi aldık
 
     _this.addItems = _this.addItems.bind(_assertThisInitialized(_this));
+    _this.deleteItem = _this.deleteItem.bind(_assertThisInitialized(_this));
     _this.state = {
       title: "To-Do App",
       description: "Lorem ipsum dolor sit amet.",
@@ -50,6 +51,19 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(TodoApp, [{
+    key: "deleteItem",
+    value: function deleteItem(item) {
+      console.log(item);
+      this.setState(function (prevState) {
+        var arr = prevState.items.filter(function (i) {
+          return item != i;
+        });
+        return {
+          items: arr
+        };
+      });
+    }
+  }, {
     key: "clearItems",
     value: function clearItems() {
       this.setState({
@@ -79,6 +93,7 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
         description: this.state.description
       }), /*#__PURE__*/React.createElement(TodoList, {
         items: this.state.items,
+        deleteItem: this.deleteItem,
         clearItems: this.clearItems
       }), /*#__PURE__*/React.createElement(Action, {
         addItems: this.addItems
@@ -126,9 +141,12 @@ var TodoList = /*#__PURE__*/function (_React$Component3) {
   _createClass(TodoList, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, //yukarıdaki item yapısını getirir
       this.props.items.map(function (item, index) {
         return /*#__PURE__*/React.createElement(TodoItem, {
+          deleteItem: _this2.props.deleteItem,
           key: index,
           item: item
         });
@@ -146,19 +164,30 @@ var TodoItem = /*#__PURE__*/function (_React$Component4) {
 
   var _super4 = _createSuper(TodoItem);
 
-  function TodoItem() {
+  function TodoItem(props) {
+    var _this3;
+
     _classCallCheck(this, TodoItem);
 
-    return _super4.apply(this, arguments);
+    _this3 = _super4.call(this, props);
+    _this3.deleteItem = _this3.deleteItem.bind(_assertThisInitialized(_this3));
+    return _this3;
   }
 
   _createClass(TodoItem, [{
+    key: "deleteItem",
+    value: function deleteItem() {
+      this.props.deleteItem(this.props.item);
+    }
+  }, {
     key: "render",
     value: function render() {
       return (
         /*#__PURE__*/
         //itemları (index) yapının içine koyar
-        React.createElement("li", null, this.props.item)
+        React.createElement("li", null, this.props.item, /*#__PURE__*/React.createElement("button", {
+          onClick: this.deleteItem
+        }, "x"))
       );
     }
   }]);
@@ -172,16 +201,16 @@ var Action = /*#__PURE__*/function (_React$Component5) {
   var _super5 = _createSuper(Action);
 
   function Action(props) {
-    var _this2;
+    var _this4;
 
     _classCallCheck(this, Action);
 
-    _this2 = _super5.call(this, props);
-    _this2.onFormSubmit = _this2.onFormSubmit.bind(_assertThisInitialized(_this2));
-    _this2.state = {
+    _this4 = _super5.call(this, props);
+    _this4.onFormSubmit = _this4.onFormSubmit.bind(_assertThisInitialized(_this4));
+    _this4.state = {
       error: ""
     };
-    return _this2;
+    return _this4;
   } //eleman ekleme
 
 
