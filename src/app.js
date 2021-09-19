@@ -1,9 +1,3 @@
-/*
-const Header = function () {
-    return <h1>Hello React</h1>
-}
-*/
-
 class TodoApp extends React.Component{
 
     constructor(props){
@@ -85,54 +79,39 @@ class TodoApp extends React.Component{
     }
 }
 
-
-class Header extends React.Component{
-    render(){
-        console.log(this.props); //props özel bir parametre, React.Componentten geliyor
-        return (
-            <div>
-                <h1>{this.props.title}</h1>
-                <div>{this.props.description}</div>
-            </div>
-        );
-    }
+function Header(props) {
+    return (
+        <div>
+            <h1>{props.title}</h1>
+            <div>{props.description}</div>
+        </div>
+    );
 }
 
-class TodoList extends React.Component{
-    render(){
-        return(
-            <div>
-                <ul>
-                    {   //yukarıdaki item yapısını getirir
-                        this.props.items.map((item, index)=>
-                            <TodoItem deleteItem={this.props.deleteItem} key={index} item={item} />
-                        )
-                    }
-                </ul>
-                <p>
-                   <button onClick={this.props.clearItems}>Clear Items</button>
-                </p>
-            </div>
-        );
-    }
+const TodoList = (props) => {
+    return(
+        <div>
+            <ul>
+                {   //yukarıdaki item yapısını getirir
+                    props.items.map((item, index)=>
+                        <TodoItem deleteItem={props.deleteItem} key={index} item={item} />
+                    )
+                }
+            </ul>
+            <p>
+               <button onClick={props.clearItems}>Clear Items</button>
+            </p>
+        </div>
+    );
 }
 
-class TodoItem extends React.Component{
-    constructor(props){
-        super(props);
-        this.deleteItem = this.deleteItem.bind(this);
-    }
-    deleteItem(){
-        this.props.deleteItem(this.props.item);
-    }
-    render(){
-        return( //itemları (index) yapının içine koyar
-            <li>
-                {this.props.item}
-                <button onClick={this.deleteItem}>x</button>
-            </li>
-        );
-    }
+const TodoItem = (props) => {
+    return( //itemları (index) yapının içine koyar
+        <li>
+            {props.item}
+            <button onClick={() => {props.deleteItem(props.item)}}>x</button>
+        </li>
+    );
 }
 
 class Action extends React.Component{
@@ -167,18 +146,5 @@ class Action extends React.Component{
         );
     }
 }
-
-/* Bunun yerine yukarıda TodoApp componenti aldık :
-const template = (
-    <div>
-        <Header />
-        <Todo />
-        <Action/>
-    </div>
-);
-
-
-ReactDOM.render(template, document.getElementById("root"));
-*/
 
 ReactDOM.render(<TodoApp/>, document.getElementById("root"));
