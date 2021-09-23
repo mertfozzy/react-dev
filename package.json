@@ -10,13 +10,14 @@
     "@babel/preset-env": "^7.15.6",
     "@babel/preset-react": "^7.14.5",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "webpack-dev": "webpack --mode development" ,
-    "webpack-build": "webpack --mode production" ,
+    "webpack-dev": "webpack --mode development",
+    "webpack-build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server dist",
+    "start": "webpack-dev-server --open",
     "babel": "npx babel src/app.js --out-file=public/scripts/app.js --watch"
   },
   "keywords": [],
